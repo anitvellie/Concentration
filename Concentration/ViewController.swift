@@ -1,34 +1,34 @@
 //
 //  ViewController.swift
-//  Concentration
+//  ConcentrationAgain
 //
-//  Created by inna on 21/02/2019.
-//  Copyright © 2019 inna. All rights reserved.
+//  Created by Alevtina on 21/02/2019.
+//  Copyright © 2019 Alevtina. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     var numberOfPairOfCards: Int {
-            return ((cardButtons.count + 1) / 2)
+        return ((cardButtons.count + 1) / 2)
     }
     
     private lazy var game = Concentration(numberOfPairOfCards: numberOfPairOfCards)
     
     private(set) var flipCount = 0 {
         didSet {
-            flipCountLabel.text = "Flip count: \(flipCount)"
+            flipCountLabel.text = "Flips count: \(flipCount)"
         }
     }
     
-    var emojiChoises = ["👻", "🎃", "☃️", "🌈", "🦇", "🕷", "🧙‍♀️"]
-
+    
     @IBOutlet private weak var flipCountLabel: UILabel!
     
     @IBOutlet private var cardButtons: [UIButton]!
@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         } else {
             print("Chosen card was not in cardButtons.")
         }
+        
     }
     
     private func updateViewFromModel() {
@@ -53,17 +54,20 @@ class ViewController: UIViewController {
                 button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             } else {
                 button.setTitle("", for: .normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : #colorLiteral(red: 0.1212199505, green: 0.1653521473, blue: 1, alpha: 1)
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
             }
         }
     }
     
+    
+    
     private var emoji = Dictionary<Int, String>()
     
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiChoises.count > 0 {
-            let randomIndex = emojiChoises.count.arc4random
-            emoji[card.identifier] = emojiChoises.remove(at: randomIndex)
+        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
+            let randomIndex = emojiChoices.count.arc4random
+            
+            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
         
         if emoji[card.identifier] != nil {
@@ -73,6 +77,7 @@ class ViewController: UIViewController {
         }
     }
     
+    private var emojiChoices = ["🦇", "🍭", "🙀", "👹", "👻", "🎃", "🔮", "🍎", "🕸"]
 }
 
 extension Int {

@@ -1,17 +1,17 @@
 //
 //  Card.swift
-//  Concentration
+//  ConcentrationAgain
 //
-//  Created by inna on 27/02/2019.
-//  Copyright © 2019 inna. All rights reserved.
+//  Created by Alevtina on 27/02/2019.
+//  Copyright © 2019 Alevtina. All rights reserved.
 //
 
 import Foundation
 
 struct Card {
     
-    var isFaceUp: Bool = false
-    var isMatched: Bool = false
+    var isFaceUp = false
+    var isMatched = false
     var identifier: Int
     
     private static var identifierFactory = 0
@@ -22,7 +22,8 @@ struct Card {
     }
     
     init() {
-        self.identifier = Card.identifierFactory
+        self.identifier = Card.getUniqueIdentifier()
     }
+    
     
 }
